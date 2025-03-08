@@ -18,9 +18,11 @@ Assim, pode-se dizer que "estado" nada mais é do que os valores das variáveis 
 ## Single Source of Truth
 Trata-se de um conceito onde as informações sobre entidades devem estar centralizadas. Todas as alterações e consultas serão feitas diretamente nesta fonte única.
 Esta fonte não deve ser tão volátil quanto uma tela (objeto) que é reconstruída toda vez que é acessada.
+
 Uma abordagem amplamente utilizada é a de "salvar" esses dados em uma classe estática, ou seja, que não é instanciada.
 Ela servirá apenas para que seja possível acessar (ou alterar) os valores de suas variáveis.
-Essa abordagem é um padrão de projeto chamado "Singleton".
+
+Também é possível usar a abordagem do "Singleton", que é um padrão de projeto que se assemelha bastante à alternativa de classe estática mencionada anteriormente.
 
 Obs.: 
 É possível carregar todos os dados do aplicativo na sua inicialização, para que ele possa acessar esses dados (e alterá-los).
