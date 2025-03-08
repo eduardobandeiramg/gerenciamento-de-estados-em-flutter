@@ -1,1 +1,1 @@
-# Provider
+# Singleton
