@@ -37,5 +37,8 @@ Para casos mais simples, o pacote Provider é recomendado pela própria equipe d
 ## Provider
 É uma biblioteca feita para gerenciamento de estados e recomendado pela própria equipe do Flutter.
 Instalação:
-`flutter pub add provider`
-`flutter pub get`
+```dart flutter pub add provider```
+
+```dart flutter pub get```
+
+Uma vez feita a instalação, 
