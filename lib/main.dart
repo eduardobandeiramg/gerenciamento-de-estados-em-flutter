@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => Eventos([]),
-      child: MyApp(),
-    ),
-  );
+  runApp(ChangeNotifierProvider(create: (context) => Eventos([]), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -20,9 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Gerenciando estados',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
       home: const MyHomePage(title: 'Gerenciando estados'),
     );
   }
@@ -38,7 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,21 +38,23 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
-          ],
-        ),
+      body: Consumer<Eventos>(
+        builder: (BuildContext context, Eventos eventos, Widget? widget) {
+          return ListView(
+            children:
+                eventos.listaEventos.map((evento) {
+                  return ListTile(
+                    title: Text(evento.nome),
+                  );
+                }).toList(),
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
+      /*      floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ),
+      ),*/
     );
   }
 }
