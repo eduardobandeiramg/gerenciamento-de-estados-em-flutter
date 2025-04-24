@@ -40,8 +40,40 @@ Para casos mais simples, o pacote Provider é recomendado pela própria equipe d
 ## Provider
 É uma biblioteca feita para gerenciamento de estados e recomendado pela própria equipe do Flutter.
 Instalação:
-```dart flutter pub add provider```
 
-```dart flutter pub get```
+`dart flutter pub add provider`
 
-Uma vez feita a instalação, 
+`dart flutter pub get`
+
+Uma vez feita a instalação, realizam-se os seguintes passos:
+
+1. Criar classe "single source of truth" que irá avisar aos ouvintes quando uma mudança ocorrer (por exemplo: classe "Eventos", que avisará quando houverem mudanças ).
+    * Fazer a classe extender de "ChangeNotifier" do Material
+    * Definir os avisos para os ouvintes nas funções em que isso é necessário:
+        `notifyListeners();`
+2. Configurar o ChangeNotifier na classe main
+    * Importar o provider (`import "package:provider/provider.dart"`)
+    * ```
+      void main(
+      {
+        runApp(
+          ChangeNotifierProvider(
+            create: (context) => ConstrutorDaClasse(lista: []),
+            child: MyApp()
+          )
+        )
+      }
+      )
+      ```
+3. Configurar o listener
+    * Na tela que "ouvirá" as mudanças da classe ChangeNotifier, cria-se um objeto do tipo Consumer, com o parâmetro de tipo recebendo a classe do tipo ChangeNotifier e implementando, no Consumer, a função anônima que retornará o Widget desejado com os dados atualizados do ChangeNotifier para o parâmetro "builder". Exemplo:
+    * Importar o provider (`import "package:provider/provider.dart"`)
+    * ```
+      ...
+      body: Consumer<Eventos>(
+        builder: (BuildContext context, Eventos objeto, Widget? widget){
+        return ListView(children: objeto.listaEventos) }
+      )
+      ```
+
+Observação: E se eu quiser usar mais de uma classe ChangeNotifier? 
