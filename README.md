@@ -30,6 +30,9 @@ Trata-se de uma alternativa mais econômica e eficiente à puxar dados do banco 
 Porém, em alguns casos, isso pode gerar algo chamado "lazy loading", que é uma demora excessiva para este carregamento inicial.
 O pacote Provider provê uma solução para esse problema, permitindo um carregamento gradual dos dados do app.
 
+Diferença fundamental entre Classe Estática armazenando dados e uso de Gerenciamento de Estados como o Provider:
+* No primeiro caso, o aplicativo não sabe quando alguma alteração ocorreu na Classe Estática. Ou seja, caso os dados precisem estar sempre atualizados para todaa as telas de forma igual, é necessário adicionar um "informante", que irá avisar quando alguma mudança ocorrer.
+
 ## Inherited Widget
 É uma alternativa fornecida pelo Flutter para gerenciar dados visíveis a toda a aplicação e na árvore de widgets. É bastante burocrático, complexo e de baixo nível.
 Para casos mais simples, o pacote Provider é recomendado pela própria equipe do Flutter.
