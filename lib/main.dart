@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => Eventos([Evento("nome", "data", "descricao")]),
+      create: (context) => Eventos([]),
       child: MyApp(),
     ),
   );
