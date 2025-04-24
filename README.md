@@ -103,7 +103,7 @@ Uma vez feita a instalação, realizam-se os seguintes passos:
 (
 builder: (BuildContext context, Eventos objeto, Widget? widget){
 return ListView(children: objeto.listaEventos) }
-)
+);
 ```
 
 Observações:
@@ -112,6 +112,7 @@ Observações:
    árvore de widgets. Em alguns casos, como em variáveis ou métodos de alto nível (fora da árvore) a
    alternativa é usar o "Provider.of". Exemplo:
    `var listaEventos = Provider.of<Eventos>(context, listen: true/false)`
+O Provider.of também pode ser usado para acessar diretamente o ChangeNotifier sem precisar implementar um Consumer (mais fácil). 
 2. E se houver mais de um ChangeNotifier? Configurar o MultiProvider como topo da árvore de widgets:
 
 ```dart
