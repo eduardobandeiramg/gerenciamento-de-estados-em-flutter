@@ -1,4 +1,3 @@
-import 'package:aprendendo_gerenciamento_estados/evento.dart';
 import 'package:aprendendo_gerenciamento_estados/eventos.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

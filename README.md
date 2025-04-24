@@ -75,5 +75,7 @@ Uma vez feita a instalação, realizam-se os seguintes passos:
         return ListView(children: objeto.listaEventos) }
       )
       ```
-
-Observação: E se eu quiser usar mais de uma classe ChangeNotifier? 
+Observações:
+1. O Consumer é um Widget de árvore, ou seja, ele consegue ler dados se for definido dentro da árvore de widgets. Em alguns casos, como em variáveis ou métodos de alto nível (fora da árvore) a alternativa é usar o "Provider.of". Exemplo:
+    `var listaEventos = Provider.of<Eventos>(context, listen: true/false)`
+2. E se houver mais de um ChangeNotifier?
