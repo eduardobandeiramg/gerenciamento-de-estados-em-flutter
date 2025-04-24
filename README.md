@@ -53,29 +53,48 @@ Uma vez feita a instalação, realizam-se os seguintes passos:
         `notifyListeners();`
 2. Configurar o ChangeNotifier na classe main
     * Importar o provider (`import "package:provider/provider.dart"`)
-    * ```
-      void main(
-      {
-        runApp(
-          ChangeNotifierProvider(
-            create: (context) => ConstrutorDaClasse(lista: []),
-            child: MyApp()
-          )
-        )
-      }
+    * Inserir o ChangeNotifierProvider no topo da árvore de widgets do aplicativo:
+
+```dart
+      void main() {
+  runApp(
+      ChangeNotifierProvider(
+          create: (context) => ConstrutorDaClasse(lista: []),
+          child: MyApp()
       )
-      ```
+  );
+}
+```
 3. Configurar o listener
     * Na tela que "ouvirá" as mudanças da classe ChangeNotifier, cria-se um objeto do tipo Consumer, com o parâmetro de tipo recebendo a classe do tipo ChangeNotifier e implementando, no Consumer, a função anônima que retornará o Widget desejado com os dados atualizados do ChangeNotifier para o parâmetro "builder". Exemplo:
     * Importar o provider (`import "package:provider/provider.dart"`)
-    * ```
-      ...
+    * Chamar o Consumer para ouvir as mudanças no ChangeNotifier:
+
+```dart
       body: Consumer<Eventos>(
         builder: (BuildContext context, Eventos objeto, Widget? widget){
         return ListView(children: objeto.listaEventos) }
       )
-      ```
+```
+      
 Observações:
 1. O Consumer é um Widget de árvore, ou seja, ele consegue ler dados se for definido dentro da árvore de widgets. Em alguns casos, como em variáveis ou métodos de alto nível (fora da árvore) a alternativa é usar o "Provider.of". Exemplo:
     `var listaEventos = Provider.of<Eventos>(context, listen: true/false)`
-2. E se houver mais de um ChangeNotifier?
+2. E se houver mais de um ChangeNotifier? Configurar o MultiProvider como topo da árvore de widgets:
+
+```dart
+void main() {
+  runApp(
+      MultiProvider(providers: [
+        ChangeNotifierProvider(
+          create: (context) => ConstrutorDaClasse1(lista: []),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ConstrutorDaClasse2(lista: []),
+        )
+      ],
+          child: myApp())
+  );
+}
+
+```
